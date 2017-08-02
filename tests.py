@@ -1,17 +1,10 @@
 import unittest
+from main.kalkulator import addition
 
 class TestStringMethods(unittest.TestCase):
-
-  def test_upper(self):
-      operation = 0
-      print(" ")
-      otv = float(input("Введеите число:"))
-      while operation != "q":
-          operation = input("Введите операцию:")
-          if operation == "+":
-              int_1 = float(input("Введеите число:"))
-              otv += int_1
+	def test_addition(self):
+		assert addition(2,2) == 4
 
 if __name__ == '__main__':
-    unittest.main()
+	unittest.main()
 
