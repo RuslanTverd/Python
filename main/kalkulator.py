@@ -21,10 +21,9 @@ def multiply(x, y):
 def division(x, y):
     return x/y
 
-operation = None
-otv = float(input("Введеите число:"))
-
 if __name__ == '__main__':
+    operation = None
+    otv = float(input("Введеите число:"))
     while operation != "q":
         operation = input("Введите операцию:")
         if operation == "=":
