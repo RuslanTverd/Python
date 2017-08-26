@@ -9,54 +9,42 @@ print("\tВыход - \"q\"\n")
 
 print(" ")
 
-def plus():
-    int_1 = float(input("Введеите число3:"))
-    plus = otv + int_1
-    return plus
+def plus(x, y):
+    return x+y
 
-def minus():
-    int_1 = float(input("Введеите число4:"))
-    minus = otv - int_1
-    return minus
+def minus(x, y):
+    return x-y
 
-def multiply():
-    int_1 = float(input("Введеите число5:"))
-    multiply = otv * int_1
-    return multiply
+def multiply(x, y):
+    return x*y
 
-def division():
-    int_1 = float(input("Введеите число6:"))
-    division = otv / int_1
-    return division
+def division(x, y):
+    return x/y
 
 operation = None
-otv = float(input("Введеите число1:"))
+otv = float(input("Введеите число:"))
 
-while operation != "q":
-    operation = input("Введите операцию:")
-    if operation == "=":
-        print("\nВаш ответ:", otv)
-        print(" ")
-        otv = float(input("Введеите число2:"))
-    elif operation == "q":
-        print(" ")
-    elif operation == "+" or operation == "-" or operation == "*" or operation == "/":
-        if operation == "+":
-            plus()
-            otv = plus()
-        elif operation == "-":
-            minus()
-            otv = minus()
-        elif operation == "*":
-            multiply()
-            otv = multiply()
-        elif operation == "/":
-            division()
-            otv = division()
-    else:
-        print("Вы ввели не правильную операцию")
-        otv = float(input("Введеите число1:"))
-
+if __name__ == '__main__':
+    while operation != "q":
+        operation = input("Введите операцию:")
+        if operation == "=":
+            print("\nВаш ответ:", otv)
+            print(" ")
+            otv = float(input("Введеите число:"))
+        elif operation == "q":
+            break
+        elif operation == "+" or operation == "-" or operation == "*" or operation == "/":
+            int_1 = float(input("Введеите число:"))
+            if operation == "+":
+                otv = plus(otv, int_1)
+            elif operation == "-":
+                otv = minus(otv, int_1)
+            elif operation == "*":
+                otv = multiply(otv, int_1)
+            elif operation == "/":
+                otv = division(otv, int_1)
+        else:
+            print("Вы ввели не правильную операцию")
 
 
 
