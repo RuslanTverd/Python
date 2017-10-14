@@ -1,18 +1,12 @@
 import unittest
-from main.kalkulator import plus, minus, multiply, division
+from main.kalkulator1 import fnom2, fstroka
 
 class TestStringMethods(unittest.TestCase):
-	def test_plus(self):
-		assert plus(2,2) == 4
+	def test_fnom2(self):
+		assert fnom2(1,"1+1+1") == 1
 
-	def test_minus(self):
-		assert minus(4,2) == 2
-
-	def test_multiply(self):
-		assert multiply(3,3) == 9
-
-	def test_division(self):
-		assert division(8,2) == 4
+	def test_fstroka(self):
+		assert fstroka(1, 2, "1+1+1") == "2+1"
 
 if __name__ == '__main__':
 	unittest.main()
