@@ -16,26 +16,25 @@ def fnom2(x, stroka):
 
 def fstroka(m1,nom1,stroka):
     if stroka.find("+", m1 + 1) != -1:
-        stroka = stroka.replace(stroka[:stroka.find("+", m1 + 1)], str(nom1))
+        stroka = stroka.replace(stroka[:stroka.find("+", m1 + 1)], str(nom1),1)
         return stroka
     elif stroka.find("-", m1 + 1) != -1:
-        stroka = stroka.replace(stroka[:stroka.find("-", m1 + 1)], str(nom1))
+        stroka = stroka.replace(stroka[:stroka.find("-", m1 + 1)], str(nom1),1)
         return stroka
     else:
-        return nom1
+        return str(nom1)
 
 
 
 
 if __name__ == '__main__':
     stroka = input("Введите строку:")
-
-    m1 = stroka.find("+")
-    m2 = stroka.find("-")
     nom1 = None
     nom2 = None
+    while stroka.isdigit() == False or stroka.find("-") != 0 and stroka[1:].isdigit() == False:
+        m1 = stroka.find("+")
+        m2 = stroka.find("-")
 
-    while stroka.isdigit() == False:
         if m2 == 0:
             if stroka[:stroka.find("-", m2 + 1)] > stroka[:stroka.find("+", m2 + 1)]:
                 nom1 = int(stroka[:stroka.find("+", m2 + 1)])
@@ -54,12 +53,12 @@ if __name__ == '__main__':
                 m4 = stroka.find("-", m3 + 1)
                 m5 = stroka.find("+", m3 + 1)
                 if m4 == -1 and m5 == -1:
-                    stroka = stroka.replace(stroka[:], str(nom1))
+                    stroka = stroka.replace(stroka[:], str(nom1),1)
                 else:
                     if m4 != -1:
-                        stroka = stroka.replace(stroka[:m4], str(nom1))
+                        stroka = stroka.replace(stroka[:m4], str(nom1),1)
                     elif m5 != -1:
-                        stroka = stroka.replace(stroka[:m5], str(nom1))
+                        stroka = stroka.replace(stroka[:m5], str(nom1),1)
                 print(stroka, nom1, nom2)
 
 
@@ -69,7 +68,7 @@ if __name__ == '__main__':
             nom2 = fnom2(m1,stroka)
             nom1 += nom2
             stroka = fstroka(m1,nom1,stroka)
-            print(stroka ,nom1, nom2)
+            print(stroka, nom1, nom2)
 
 
         elif m1 > m2 and m2 != -1 or m1 == -1:
