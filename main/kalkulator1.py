@@ -23,7 +23,16 @@ def fstroka(m1,nom1,stroka):
         return stroka
     else:
         return str(nom1)
-
+def fz(stroka):
+    if stroka.isdigit() == True:
+        z = 1
+        return z
+    elif stroka.find("-") == "0" and stroka[1:].isdigit() == True:
+        z = 1
+        return z
+    else:
+        z = 0
+        return z
 
 
 
@@ -31,7 +40,8 @@ if __name__ == '__main__':
     stroka = input("Введите строку:")
     nom1 = None
     nom2 = None
-    while stroka.isdigit() == False or stroka.find("-") != 0 and stroka[1:].isdigit() == False:
+    z = 0
+    while z != 1 :
         m1 = stroka.find("+")
         m2 = stroka.find("-")
 
@@ -42,11 +52,13 @@ if __name__ == '__main__':
                 nom1 += nom2
                 stroka = fstroka(m1, nom1, stroka)
                 print(stroka, nom1, nom2)
+                z = fz(stroka)
 
 
 
             elif stroka[:stroka.find("-", m2 + 1)] < stroka[:stroka.find("+", m2 + 1)]:
                 nom1 = int(stroka[:stroka.find("-", m2 + 1)])
+                print(nom1)
                 nom2 = fnom2(m2, stroka)
                 nom1 -= nom2
                 m3 = stroka.find("-", m2 + 1)
@@ -59,7 +71,8 @@ if __name__ == '__main__':
                         stroka = stroka.replace(stroka[:m4], str(nom1),1)
                     elif m5 != -1:
                         stroka = stroka.replace(stroka[:m5], str(nom1),1)
-                print(stroka, nom1, nom2)
+                print(stroka, nom1, nom2,"/","m1-",m1,"m2-", m2,"m3-", m3,"m4-", m4,"m5-", m5)
+                z = fz(stroka)
 
 
 
@@ -67,9 +80,9 @@ if __name__ == '__main__':
             nom1 = int(stroka[:m1])
             nom2 = fnom2(m1,stroka)
             nom1 += nom2
-            stroka = fstroka(m1,nom1,stroka)
-            print(stroka, nom1, nom2)
-
+            stroka = str(fstroka(m1,nom1,stroka))
+            print(stroka, nom1, nom2, stroka.isdigit())
+            z = fz(stroka)
 
         elif m1 > m2 and m2 != -1 or m1 == -1:
             nom1 = int(stroka[:m2])
@@ -77,3 +90,4 @@ if __name__ == '__main__':
             nom1 -= nom2
             stroka = fstroka(m2,nom1,stroka)
             print(stroka, nom1, nom2)
+            z = fz(stroka)
