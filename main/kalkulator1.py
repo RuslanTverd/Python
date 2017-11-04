@@ -37,57 +37,56 @@ def fz(stroka):
 
 
 if __name__ == '__main__':
-    stroka = input("Введите строку:")
-    nom1 = None
-    nom2 = None
-    z = 0
-    while z != 1 :
-        m1 = stroka.find("+")
-        m2 = stroka.find("-")
+    stroka = None
+    while stroka != "q":
+        stroka = input("Введите строку:")
+        nom1 = None
+        nom2 = None
+        z = 0
+        while z != 1:
+            m1 = stroka.find("+")
+            m2 = stroka.find("-")
 
-        if m2 == 0:
-            if stroka[:stroka.find("-", m2 + 1)] > stroka[:stroka.find("+", m2 + 1)]:
-                nom1 = int(stroka[:stroka.find("+", m2 + 1)])
-                nom2 = fnom2(m1, stroka)
+            if m2 == 0:
+                if stroka[:stroka.find("-", m2 + 1)] > stroka[:stroka.find("+", m2 + 1)]:
+                    nom1 = int(stroka[:stroka.find("+", m2 + 1)])
+                    nom2 = fnom2(m1, stroka)
+                    nom1 += nom2
+                    stroka = fstroka(m1, nom1, stroka)
+                    z = fz(stroka)
+
+
+
+                elif stroka[:stroka.find("-", m2 + 1)] < stroka[:stroka.find("+", m2 + 1)]:
+                    nom1 = int(stroka[:stroka.find("-", m2 + 1)])
+                    print(nom1)
+                    nom2 = fnom2(m2, stroka)
+                    nom1 -= nom2
+                    m3 = stroka.find("-", m2 + 1)
+                    m4 = stroka.find("-", m3 + 1)
+                    m5 = stroka.find("+", m3 + 1)
+                    if m4 == -1 and m5 == -1:
+                        stroka = stroka.replace(stroka[:], str(nom1),1)
+                    else:
+                        if m4 != -1:
+                            stroka = stroka.replace(stroka[:m4], str(nom1),1)
+                        elif m5 != -1:
+                            stroka = stroka.replace(stroka[:m5], str(nom1),1)
+                    z = fz(stroka)
+
+
+
+            elif m2 > m1 and m1 != -1 or m2 == -1:
+                nom1 = int(stroka[:m1])
+                nom2 = fnom2(m1,stroka)
                 nom1 += nom2
-                stroka = fstroka(m1, nom1, stroka)
-                print(stroka, nom1, nom2)
+                stroka = str(fstroka(m1,nom1,stroka))
                 z = fz(stroka)
 
-
-
-            elif stroka[:stroka.find("-", m2 + 1)] < stroka[:stroka.find("+", m2 + 1)]:
-                nom1 = int(stroka[:stroka.find("-", m2 + 1)])
-                print(nom1)
-                nom2 = fnom2(m2, stroka)
+            elif m1 > m2 and m2 != -1 or m1 == -1:
+                nom1 = int(stroka[:m2])
+                nom2 = fnom2(m2,stroka)
                 nom1 -= nom2
-                m3 = stroka.find("-", m2 + 1)
-                m4 = stroka.find("-", m3 + 1)
-                m5 = stroka.find("+", m3 + 1)
-                if m4 == -1 and m5 == -1:
-                    stroka = stroka.replace(stroka[:], str(nom1),1)
-                else:
-                    if m4 != -1:
-                        stroka = stroka.replace(stroka[:m4], str(nom1),1)
-                    elif m5 != -1:
-                        stroka = stroka.replace(stroka[:m5], str(nom1),1)
-                print(stroka, nom1, nom2,"/","m1-",m1,"m2-", m2,"m3-", m3,"m4-", m4,"m5-", m5)
+                stroka = fstroka(m2,nom1,stroka)
                 z = fz(stroka)
-
-
-
-        elif m2 > m1 and m1 != -1 or m2 == -1:
-            nom1 = int(stroka[:m1])
-            nom2 = fnom2(m1,stroka)
-            nom1 += nom2
-            stroka = str(fstroka(m1,nom1,stroka))
-            print(stroka, nom1, nom2, stroka.isdigit())
-            z = fz(stroka)
-
-        elif m1 > m2 and m2 != -1 or m1 == -1:
-            nom1 = int(stroka[:m2])
-            nom2 = fnom2(m2,stroka)
-            nom1 -= nom2
-            stroka = fstroka(m2,nom1,stroka)
-            print(stroka, nom1, nom2)
-            z = fz(stroka)
+        print("Отвевет:",nom1)
