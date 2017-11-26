@@ -2,8 +2,62 @@ print("\tКалькулятор\n")
 print("Программа поддерживает следующие операции:\n")
 print("\tСложение  - \"+\"")
 print("\tВычитание - \"-\"")
-
+print("\tИстория операций - \"h\"")
+print("\tОчистить историю операций - \"с\"")
+print("\tВыйти - \"q\"")
 print(" ")
+
+def kalkulator(stroka):
+    nom1 = None
+    nom2 = None
+    z = 0  # Регулирует роботу цикла " while z != 1: "
+    while z != 1:
+        find_plus = stroka.find("+")  # Индекс символа " + " Если символа нет - индекс = -1
+        find_minus = stroka.find("-")  # Индекс символа " - " Если символа нет - индекс = -1
+
+        if find_minus == 0:
+            if stroka[:stroka.find("-", find_minus + 1)] > stroka[:stroka.find("+", find_minus + 1)]:
+                nom1 = int(stroka[:stroka.find("+", find_minus + 1)])
+                nom2 = fnom2(find_plus, stroka)
+                nom1 += nom2
+                stroka = fstroka(find_plus, nom1, stroka)
+                z = fz(stroka)  # Регулирует роботу цикла " while z != 1: "
+
+
+
+            elif stroka[:stroka.find("-", find_minus + 1)] < stroka[:stroka.find("+", find_minus + 1)]:
+                nom1 = int(stroka[:stroka.find("-", find_minus + 1)])
+                nom2 = fnom2(find_minus, stroka)
+                nom1 -= nom2
+                m3 = stroka.find("-", find_minus + 1)
+                m4 = stroka.find("-", m3 + 1)
+                m5 = stroka.find("+", m3 + 1)
+                if m4 == -1 and m5 == -1:
+                    stroka = stroka.replace(stroka[:], str(nom1), 1)
+                else:
+                    if m4 != -1:
+                        stroka = stroka.replace(stroka[:m4], str(nom1), 1)
+                    elif m5 != -1:
+                        stroka = stroka.replace(stroka[:m5], str(nom1), 1)
+                z = fz(stroka)  # Регулирует роботу цикла " while z != 1: "
+
+
+
+        elif find_minus > find_plus and find_plus != -1 or find_minus == -1:
+            nom1 = int(stroka[:find_plus])
+            nom2 = fnom2(find_plus, stroka)
+            nom1 += nom2
+            stroka = str(fstroka(find_plus, nom1, stroka))
+            z = fz(stroka)  # Регулирует роботу цикла " while z != 1: "
+
+        elif find_plus > find_minus and find_minus != -1 or find_plus == -1:
+            nom1 = int(stroka[:find_minus])
+            nom2 = fnom2(find_minus, stroka)
+            nom1 -= nom2
+            stroka = fstroka(find_minus, nom1, stroka)
+            z = fz(stroka)  # Регулирует роботу цикла " while z != 1: "
+    print("Отвевет:", nom1)
+    return nom1
 
     # fnom2 - Отвечает За Создание Переменной nom2
     # Берет число после пременной nom1 и присваивает это число переменной nom2
@@ -47,54 +101,21 @@ def fz(stroka):
 
 if __name__ == '__main__':
     stroka = None
+    history = []
     while stroka != "q":
         stroka = input("Введите строку:")
-        nom1 = None
-        nom2 = None
-        z = 0    # Регулирует роботу цикла " while z != 1: "
-        while z != 1:
-            find_plus = stroka.find("+")  # Индекс символа " + " Если символа нет - индекс = -1
-            find_minus = stroka.find("-")  # Индекс символа " - " Если символа нет - индекс = -1
-
-            if find_minus == 0:
-                if stroka[:stroka.find("-", find_minus + 1)] > stroka[:stroka.find("+", find_minus + 1)]:
-                    nom1 = int(stroka[:stroka.find("+", find_minus + 1)])
-                    nom2 = fnom2(find_plus, stroka)
-                    nom1 += nom2
-                    stroka = fstroka(find_plus, nom1, stroka)
-                    z = fz(stroka)   # Регулирует роботу цикла " while z != 1: "
-
-
-
-                elif stroka[:stroka.find("-", find_minus + 1)] < stroka[:stroka.find("+", find_minus + 1)]:
-                    nom1 = int(stroka[:stroka.find("-", find_minus + 1)])
-                    nom2 = fnom2(find_minus, stroka)
-                    nom1 -= nom2
-                    m3 = stroka.find("-", find_minus + 1)
-                    m4 = stroka.find("-", m3 + 1)
-                    m5 = stroka.find("+", m3 + 1)
-                    if m4 == -1 and m5 == -1:
-                        stroka = stroka.replace(stroka[:], str(nom1),1)
-                    else:
-                        if m4 != -1:
-                            stroka = stroka.replace(stroka[:m4], str(nom1),1)
-                        elif m5 != -1:
-                            stroka = stroka.replace(stroka[:m5], str(nom1),1)
-                    z = fz(stroka)   # Регулирует роботу цикла " while z != 1: "
-
-
-
-            elif find_minus > find_plus and find_plus != -1 or find_minus == -1:
-                nom1 = int(stroka[:find_plus])
-                nom2 = fnom2(find_plus,stroka)
-                nom1 += nom2
-                stroka = str(fstroka(find_plus,nom1,stroka))
-                z = fz(stroka)   # Регулирует роботу цикла " while z != 1: "
-
-            elif find_plus > find_minus and find_minus != -1 or find_plus == -1:
-                nom1 = int(stroka[:find_minus])
-                nom2 = fnom2(find_minus,stroka)
-                nom1 -= nom2
-                stroka = fstroka(find_minus,nom1,stroka)
-                z = fz(stroka)  # Регулирует роботу цикла " while z != 1: "
-        print("Отвевет:",nom1)
+        if stroka == "q":
+            break
+        elif stroka == "h":
+            print(" ")
+            print("История операций")
+            print(history)
+            print(" ")
+        elif stroka == "c":
+            history = []
+            print(" ")
+            print("История операций очищена")
+            print(" ")
+        else:
+            kalkulator(stroka)
+            history.append(stroka)
