@@ -6,7 +6,7 @@ print("\tИстория операций - \"h\"")
 print("\tОчистить историю операций - \"с\"")
 print("\tВыйти - \"q\"")
 print(" ")
-
+import csv
 def kalkulator(stroka):
     nom1 = None
     nom2 = None
@@ -101,21 +101,28 @@ def fz(stroka):
 
 if __name__ == '__main__':
     stroka = None
-    history = []
+    history = "history.csv"
     while stroka != "q":
         stroka = input("Введите строку:")
         if stroka == "q":
             break
         elif stroka == "h":
-            print(" ")
-            print("История операций")
-            print(history)
+            print("История операций\n")
+            with open(history, "r", newline="") as file:
+                reader = csv.reader(file)
+                line = file.readline()
+                while line:
+                    print(line, end="")
+                    line = file.readline()
             print(" ")
         elif stroka == "c":
-            history = []
-            print(" ")
-            print("История операций очищена")
-            print(" ")
+            with open(history, "w", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerows("")
+            print("История очищена")
         else:
             kalkulator(stroka)
-            history.append(stroka)
+            with open(history, "a", newline="") as file:
+                str1 = [stroka]
+                writer = csv.writer(file)
+                writer.writerow(str1)
