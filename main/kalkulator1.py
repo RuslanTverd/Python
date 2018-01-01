@@ -108,21 +108,18 @@ if __name__ == '__main__':
             break
         elif stroka == "h":
             print("История операций\n")
-            with open(history, "r", newline="") as file:
-                reader = csv.reader(file)
-                line = file.readline()
-                while line:
-                    print(line, end="")
-                    line = file.readline()
+            with open(history, "r", newline="") as csv_file:
+                for line in csv_file.readlines():
+                    print(line)
             print(" ")
         elif stroka == "c":
-            with open(history, "w", newline="") as file:
-                writer = csv.writer(file)
+            with open(history, "w", newline="") as csv_file:
+                writer = csv.writer(csv_file)
                 writer.writerows("")
             print("История очищена")
         else:
             kalkulator(stroka)
-            with open(history, "a", newline="") as file:
+            with open(history, "a", newline="") as csv_file:
                 str1 = [stroka]
-                writer = csv.writer(file)
+                writer = csv.writer(csv_file)
                 writer.writerow(str1)
